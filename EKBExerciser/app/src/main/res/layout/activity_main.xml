@@ -97,7 +97,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtTestField" />
 
             <Button
-                android:id="@+id/btnEnableKeyboard"
+                android:id="@+id/btnSetLayoutDW001"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -106,12 +106,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/lblHeadingEnableDisableKeyboard" />
 
             <Button
-                android:id="@+id/btnDisableKeyboard"
+                android:id="@+id/btnSetLayoutDW002"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Disable"
-                app:layout_constraintStart_toEndOf="@+id/btnEnableKeyboard"
+                app:layout_constraintStart_toEndOf="@+id/btnSetLayoutDW001"
                 app:layout_constraintTop_toBottomOf="@+id/lblHeadingEnableDisableKeyboard" />
 
             <TextView
@@ -123,7 +123,7 @@
                 android:text="Get Current Layout:"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnDisableKeyboard" />
+                app:layout_constraintTop_toBottomOf="@id/btnSetLayoutDW002" />
 
             <TextView
                 android:id="@+id/txtCurrentLayout"
@@ -148,11 +148,13 @@
 
             <TextView
                 android:id="@+id/txtAvailableLayouts"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="Available layouts go here..."
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lblHeadingGetAvailableLayouts" />
 
@@ -248,6 +250,26 @@
                 android:text="Reset Enterprise Keyboard"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblHeadingResetKeyboard" />
+
+            <TextView
+                android:id="@+id/lblHeadingMoveToDataWedgeDemo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Move to EKB via DataWedge Demo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnResetKeyboardTrue" />
+
+            <Button
+                android:id="@+id/btnEKBViaDataWedgeDemo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="EKB Via DataWedge Demo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lblHeadingMoveToDataWedgeDemo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

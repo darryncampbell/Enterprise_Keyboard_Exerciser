@@ -12,14 +12,15 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //  todo DataWedge logic in the other 3 activities
-    //  todo Create DataWedge profile on launch
+    //  todo DataWedge logic in the other activity
 
     //  REPLACE THESE WITH YOUR CUSTOM LAYOUT GROUP NAME AND LAYOUT NAMES
-    final String LAYOUT_GROUP_NAME = "Test001";
+    static final String LAYOUT_GROUP_NAME = "Test001";
     final String LAYOUT_NAME_ONE = "Layout001";
     final String LAYOUT_NAME_TWO = "Layout002";
     final String LAYOUT_NAME_THREE = "Layout003";
+    static final String LAYOUT_DATAWEDGE_001 = "LayoutDW001";
+    static final String LAYOUT_DATAWEDGE_002 = "LayoutDW002";
 
     final String EKB_ACTION_UPDATE = "com.symbol.ekb.api.ACTION_UPDATE";
     final String EKB_ACTION_GET = "com.symbol.ekb.api.ACTION_GET";
@@ -34,11 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button btnSetKeyLayout1 = findViewById(R.id.btnSetKeyboardLayout1);
         btnSetKeyLayout1.setOnClickListener(this);
-
-        //  Create the DataWedge profile associated with this application
-        Button btnEnable = findViewById(R.id.btnEnableKeyboard);
+        Button btnEnable = findViewById(R.id.btnSetLayoutDW001);
         btnEnable.setOnClickListener(this);
-        Button btnDisable = findViewById(R.id.btnDisableKeyboard);
+        Button btnDisable = findViewById(R.id.btnSetLayoutDW002);
         btnDisable.setOnClickListener(this);
         Button btnSetKeyboardLayoutOne = findViewById(R.id.btnSetKeyboardLayout1);
         btnSetKeyboardLayoutOne.setOnClickListener(this);
@@ -52,10 +51,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnHideKeyboard.setOnClickListener(this);
         Button btnResetKeyboard = findViewById(R.id.btnResetKeyboardTrue);
         btnResetKeyboard.setOnClickListener(this);
+        Button btnEKBViaDWDemo = findViewById(R.id.btnEKBViaDataWedgeDemo);
+        btnEKBViaDWDemo.setOnClickListener(this);
 
         RequestAvailableLayouts();
-    }
 
+        CreateDataWedgeProfile();
+    }
 
     private void RequestCurrentLayout()
     {
@@ -139,10 +141,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btnEnableKeyboard:
+            case R.id.btnSetLayoutDW001:
                 EnableKeyboard(true);
                 break;
-            case R.id.btnDisableKeyboard:
+            case R.id.btnSetLayoutDW002:
                 EnableKeyboard(false);
                 break;
             case R.id.btnSetKeyboardLayout1:
@@ -163,6 +165,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnResetKeyboardTrue:
                 ResetKeyboard(true);
                 break;
+            case R.id.btnEKBViaDataWedgeDemo:
+                startActivity(new Intent(this, SecondActivity.class));
+                return;
         }
         RequestCurrentLayout();
     }
@@ -216,5 +221,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("CALLBACK_RESPONSE", piResponse);
         sendBroadcast(intent);
         ShowKeyboard(true);
+    }
+
+    private void CreateDataWedgeProfile() {
+        DataWedgeUtilities.CreateProfile(getApplicationContext());
+        DataWedgeUtilities.SetProfileConfig(LAYOUT_GROUP_NAME, LAYOUT_DATAWEDGE_001, getApplicationContext());
     }
 }
