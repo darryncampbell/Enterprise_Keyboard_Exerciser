@@ -7,7 +7,7 @@ Before using the demo application, you must deploy the provided Test001.encrypte
 
 Test001.encrypted contains a set of 5 pre-defined layouts quickly knocked together for demo purposes only.  After deployment, provided you are running DataWedge 7.4.44 or higher you should see something like the below in the Enterprise Keyboard Layout configuration
 
-![Settings](https://raw.githubusercontent.com/darryncampbell/Enterprise_Keyboard_Exerciser/master/media/settings enabled.jpg?raw=true)
+![Settings](https://raw.githubusercontent.com/darryncampbell/Enterprise_Keyboard_Exerciser/master/media/settings_enabled.jpg?raw=true)
 
 With all prerequisites in place you can now run the demo application.  You can use the buttons on the first activity to exercise the different APIs and you should see something like the following screenshots (obtained from a TC57):
 
