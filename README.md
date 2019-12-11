@@ -1,6 +1,14 @@
 # Enterprise_Keyboard_Exerciser
 Application to show the API and DataWedge interface to Zebra's Enterprise Keyboard
 
+## Requirements
+- The layout(s) have been designed in the designer tool and a <filename>.encrypted file has been exported from the tool
+- The <filename>.encrypted file has been deployed to the device in the following directory: /enterprise/device/settings/ekb/config/.
+- Enterprise Keyboard version 3.2 or higher is present on the device.  This is a downloadable apk file available from the support portal.
+- Enterprise Keyboard is set to the default IME.  
+- Your device is running DataWedge 7.4.44.  This is required to switch Enterprise Keyboard layouts using DataWedge but is not required to use the EKB API
+
+## Demo application
 Before using the demo application, you must deploy the provided Test001.encrypted file to /enterprise/device/settings/ekb/config/ which is easily achieved via adb:
 
 `adb push Test001.encrypted /enterprise/device/settings/ekb/config/Test001.encrypted`
