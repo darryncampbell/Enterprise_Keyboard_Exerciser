@@ -1,4 +1,4 @@
-# Enterprise_Keyboard_Exerciser
+# Enterprise Keyboard Exerciser
 Application to show the API and DataWedge interface to Zebra's Enterprise Keyboard
 
 ## Requirements
