@@ -1,3 +1,6 @@
+*Please be aware that this application / sample is provided as-is for demonstration purposes without any guarantee of support*
+=========================================================
+
 # Enterprise Keyboard Exerciser
 Application to show the API and DataWedge interface to Zebra's Enterprise Keyboard
 
