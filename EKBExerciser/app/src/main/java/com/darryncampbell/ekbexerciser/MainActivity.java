@@ -90,13 +90,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void ProcessEKBResponse(Intent intent) {
-        Bundle mBundle = intent.getExtras();
+        final Bundle mBundle = intent.getExtras();
         String result = mBundle.getString("RESULT_CODE");
         String msg = mBundle.getString("RESULT_MESSAGE");
         Log.i(LOG_TAG, "From EKB: (result=" + result + ", msg=" + msg + ")");
         String currLayoutGroup = "unknown";
         String currLayoutName = "unknown";
-        String customLayouts = "";
 
         //  Handle current layout name
         if(mBundle.get("CURRENT_LAYOUT_GROUP") != null) {
@@ -110,24 +109,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //  Handle available layouts
         if(mBundle.get("AVAILABLE_LAYOUTS") != null) {
-            Object[] respObj = (Object[]) mBundle.getParcelableArray("AVAILABLE_LAYOUTS");
-            for(int i = 0; i < respObj.length; i++) {
-                Bundle temp = (Bundle) respObj[i];
-                customLayouts += "Group: ";
-                customLayouts += temp.getString("LAYOUT_GROUP");
-                customLayouts += " (";
-                Object[] layoutNamesBundle = (Object[]) temp.get("LAYOUTS");
-                for(int j = 0; j <layoutNamesBundle.length; j++) {
-                    Bundle tempBundle = (Bundle) layoutNamesBundle[j];
-                    customLayouts += "Layout:";
-                    customLayouts += tempBundle.getString("LAYOUT_NAME");
-                    customLayouts += " ";
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    Object[] respObj = (Object[]) mBundle.getParcelableArray("AVAILABLE_LAYOUTS");
+                    for(int i = 0; i < respObj.length; i++) {
+                        Bundle temp = (Bundle) respObj[i];
+                        String customLayouts = "";
+                        customLayouts += "Group: ";
+                        customLayouts += temp.getString("LAYOUT_GROUP");
+                        customLayouts += " (";
+                        Object[] layoutNamesBundle = (Object[]) temp.get("LAYOUTS");
+                        for(int j = 0; j <layoutNamesBundle.length; j++) {
+                            Bundle tempBundle = (Bundle) layoutNamesBundle[j];
+                            customLayouts += "Layout:";
+                            customLayouts += tempBundle.getString("LAYOUT_NAME");
+                            customLayouts += " ";
+                        }
+                        customLayouts += ") ";
+                        TextView availableLayouts = findViewById(R.id.txtAvailableLayouts);
+                        availableLayouts.setText(customLayouts);
+                    }
                 }
-                customLayouts += ") ";
-            }
+            });
             RequestCurrentLayout();
-            TextView availableLayouts = findViewById(R.id.txtAvailableLayouts);
-            availableLayouts.setText(customLayouts);
         }
     }
 
@@ -149,12 +153,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnSetKeyboardLayout1:
                 SetKeyboardLayout(LAYOUT_GROUP_NAME, LAYOUT_NAME_ONE);
+                RequestAvailableLayouts();
                 break;
             case R.id.btnSetKeyboardLayout2:
                 SetKeyboardLayout(LAYOUT_GROUP_NAME, LAYOUT_NAME_TWO);
+                RequestAvailableLayouts();
                 break;
             case R.id.btnSetKeyboardLayout3:
                 SetKeyboardLayout(LAYOUT_GROUP_NAME, LAYOUT_NAME_THREE);
+                RequestAvailableLayouts();
                 break;
             case R.id.btnShowKeyboard:
                 ShowKeyboard(true);
